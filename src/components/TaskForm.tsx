@@ -123,7 +123,7 @@ function TaskForm({ onSubmit, isOpen, onClose, initialTask }: TaskFormProps) {
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-[920px] h-[95vh] md:h-[80vh] rounded-xl mt-12 md:mt-0  p-0 gap-0 overflow-hidden">
+      <DialogContent className="max-w-[920px] h-[95vh] md:h-[80vh] rounded-xl md:mt-0  p-0 gap-0 overflow-hidden">
         <DialogHeader className="px-4 py-2 border-b flex flex-row items-center justify-between">
           <DialogTitle className="text-xl font-semibold">
             {initialTask ? "" : "Create Task"}
