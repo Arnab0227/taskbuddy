@@ -22,7 +22,7 @@ import { Button } from "@/components/ui/button";
 import { db, auth } from "../firebase/config";
 import { Task } from "../types/Task";
 import TaskItem from "./TaskItem";
-import TaskForm from "../components/TaskForm";
+import TaskForm from "./TaskForm";
 import BatchActions from "../components/BatchActions";
 import { IoIosSearch } from "react-icons/io";
 import SkeletonLoader from "../components/SkeletonLoader";
@@ -191,7 +191,7 @@ const Dashboard: React.FC = () => {
   return (
     <div>
       <div className="flex items-center justify-between bg-[#FAEEFC] px-2 h-14">
-        <h1 className="text-xl ">TaskBuddy</h1>
+        <h1 className="text-xl font-semibold text-[#7B1984]">TaskBuddy</h1>
         <UserProfile />
       </div>
       <div className="hidden md:flex items-center gap-2 px-4 py-2 border-b">
@@ -298,7 +298,7 @@ const Dashboard: React.FC = () => {
         </div>
       </div>
       {view === "list" ? (
-        <div className="pt-4 grid grid-cols-1 gap-4 mx-3">
+        <div className="pt-4 grid grid-cols-1 gap-4 mx-3 mb-8">
           <div className="hidden md:grid md:grid-cols-4 px-4 pt-3 font-medium text-sm border-t border-gray-200">
             <div>Task name</div>
             <div>Due on</div>

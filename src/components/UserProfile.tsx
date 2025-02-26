@@ -100,7 +100,6 @@ const UserProfile: React.FC = () => {
     try {
       await signOut(auth);
       queryClient.clear();
-      // Redirect to login page or update app state
     } catch (error) {
       console.error("Error signing out:", error);
     }
@@ -124,6 +123,7 @@ const UserProfile: React.FC = () => {
   }
 
   const userInitial = userData?.name ? userData.name[0].toUpperCase() : "?";
+  const firstName = userData?.name?.split(" ")[0] || "User";
 
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
@@ -135,7 +135,7 @@ const UserProfile: React.FC = () => {
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] rounded-2xl">
         <DialogHeader>
-          <DialogTitle>User Profile</DialogTitle>
+          <DialogTitle>Hey, {firstName}</DialogTitle>
         </DialogHeader>
         <div className="grid gap-4 py-4 ">
           <div className="flex flex-col items-center space-y-4">

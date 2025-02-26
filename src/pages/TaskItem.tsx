@@ -224,6 +224,7 @@ function TaskItem({
                     <Button
                       onClick={handleAddTask}
                       className="h-7 rounded-full bg-[#7B1984] hover:bg-[#7B1984]"
+                      disabled={!newTask.title || !newTask.dueDate || !newTask.category || !newTask.status}
                     >
                       ADD <AiOutlineEnter />
                     </Button>
@@ -231,6 +232,7 @@ function TaskItem({
                     <Button
                       onClick={() => setIsAddingTask(false)}
                       className="border-none bg-transparent text-black font-semibold text-xs hover:bg-transparent"
+                      
                     >
                       CANCEL
                     </Button>
@@ -288,14 +290,8 @@ function TaskItem({
               <div className="hidden md:flex justify-between items-center">
                 <span>{task.category}</span>
                 <DropdownMenu>
-                  <DropdownMenuTrigger asChild>
-                    <Button
-                      variant="ghost"
-                      className="h-8 w-8 p-0 hover:bg-transparent"
-                    >
-                      <BsThreeDots className="h-4 w-4" />
-                      <span className="sr-only">Open menu</span>
-                    </Button>
+                  <DropdownMenuTrigger >
+                    <BsThreeDots className="text-2xl"/>
                   </DropdownMenuTrigger>
                   <DropdownMenuContent align="end" className="w-[160px]">
                     <DropdownMenuItem onClick={() => onEditTask(task)}>

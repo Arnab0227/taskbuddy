@@ -1,12 +1,10 @@
-"use client";
-
 import React from "react";
 import { useMutation, useQueryClient } from "react-query";
 import {
   collection,
   query,
   where,
-  getDocs,
+  getDocs, 
   writeBatch,
 } from "firebase/firestore";
 import { db, auth } from "../firebase/config";
@@ -64,13 +62,17 @@ const BatchActions: React.FC<BatchActionsProps> = ({
       const q = query(tasksRef, where("__name__", "in", selectedTasks));
       const querySnapshot = await getDocs(q);
       querySnapshot.forEach((doc) => {
-        batch.update(doc.ref, { status: newStatus });
+        batch.update(doc.ref, {
+          status: newStatus,
+          completed: newStatus === "Completed", 
+        })
       });
       await batch.commit();
     },
     {
       onSuccess: () => {
         queryClient.invalidateQueries("tasks");
+        selectedTasks.forEach((taskId) => onTaskSelect(taskId, false));
       },
     }
   );
@@ -99,13 +101,13 @@ const BatchActions: React.FC<BatchActionsProps> = ({
             </span>
             <button
               onClick={handleUnselectAll}
-              className="text-white hover:text-white transition-colors"
+              className="text-white hover:text-red-500 transition-colors text-lg"
               aria-label="Clear Selection"
             >
               <RxCross2 />
             </button>
           </div>
-          <div className="text-white">
+          <div className="text-white hover:text-red-500 transition-colors" onClick={handleUnselectAll}>
             {selectedTasks.length >= 2 ? (
               <BiSelectMultiple className="w-5 h-5" />
             ) : (

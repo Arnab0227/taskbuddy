@@ -57,6 +57,7 @@ const RenderForm: React.FC<RenderFormProps> = ({
   onClose,
   taskId,
 }) => {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const handleSubmitWrapper = useCallback(
     (e: React.FormEvent) => {
@@ -85,6 +86,7 @@ const RenderForm: React.FC<RenderFormProps> = ({
           <div className="space-y-2 border rounded-xl p-2">
             <Textarea
               placeholder="Description"
+              ref={textareaRef}
               value={description}
               onChange={(e) => setDescription(e.target.value)}
               className="min-h-[100px] resize-none border-none p-0 focus-visible:ring-0"
@@ -97,17 +99,17 @@ const RenderForm: React.FC<RenderFormProps> = ({
                   size="sm"
                   className="h-8 w-8 p-0"
                   onClick={() => {
-                    const textarea = document.getElementById(
-                      "description"
-                    ) as HTMLTextAreaElement;
-                    const start = textarea.selectionStart;
-                    const end = textarea.selectionEnd;
-                    const selectedText = description.slice(start, end);
-                    setDescription(
-                      description.slice(0, start) +
-                        `**${selectedText}**` +
-                        description.slice(end)
-                    );
+                    if (textareaRef.current) {
+                      const textarea = textareaRef.current;
+                      const start = textarea.selectionStart;
+                      const end = textarea.selectionEnd;
+                      const selectedText = description.slice(start, end);
+                      setDescription(
+                        description.slice(0, start) +
+                          `**${selectedText}**` +
+                          description.slice(end)
+                      );
+                    }
                   }}
                 >
                   <Bold className="h-4 w-4" />
@@ -118,17 +120,17 @@ const RenderForm: React.FC<RenderFormProps> = ({
                   size="sm"
                   className="h-8 w-8 p-0"
                   onClick={() => {
-                    const textarea = document.getElementById(
-                      "description"
-                    ) as HTMLTextAreaElement;
-                    const start = textarea.selectionStart;
-                    const end = textarea.selectionEnd;
-                    const selectedText = description.slice(start, end);
-                    setDescription(
-                      description.slice(0, start) +
-                        `*${selectedText}*` +
-                        description.slice(end)
-                    );
+                    if (textareaRef.current) {
+                      const textarea = textareaRef.current;
+                      const start = textarea.selectionStart;
+                      const end = textarea.selectionEnd;
+                      const selectedText = description.slice(start, end);
+                      setDescription(
+                        description.slice(0, start) +
+                          `*${selectedText}*` +
+                          description.slice(end)
+                      );
+                    }
                   }}
                 >
                   <Italic className="h-4 w-4" />
@@ -139,17 +141,17 @@ const RenderForm: React.FC<RenderFormProps> = ({
                   size="sm"
                   className="h-8 w-8 p-0"
                   onClick={() => {
-                    const textarea = document.getElementById(
-                      "description"
-                    ) as HTMLTextAreaElement;
-                    const start = textarea.selectionStart;
-                    const end = textarea.selectionEnd;
-                    const selectedText = description.slice(start, end);
-                    setDescription(
-                      description.slice(0, start) +
-                        `~~${selectedText}~~` +
-                        description.slice(end)
-                    );
+                    if (textareaRef.current) {
+                      const textarea = textareaRef.current;
+                      const start = textarea.selectionStart;
+                      const end = textarea.selectionEnd;
+                      const selectedText = description.slice(start, end);
+                      setDescription(
+                        description.slice(0, start) +
+                          `~~${selectedText}~~` +
+                          description.slice(end)
+                      );
+                    }
                   }}
                 >
                   <StrikethroughIcon className="h-4 w-4" />

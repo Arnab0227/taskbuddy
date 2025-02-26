@@ -7,7 +7,7 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import RenderForm from "./RenderForm";
+import RenderForm from "../components/RenderForm";
 import { format } from "date-fns";
 
 interface TaskFormProps {
